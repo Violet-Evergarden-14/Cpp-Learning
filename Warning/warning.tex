@@ -1,0 +1,55 @@
+\documentclass{article}
+
+\begin{document}
+
+\section{++a and a++}
+    The difference between ++a and a++ is that the result of a++ is a (a changing into a + 1 is an incidental effect),
+while the result of the other one is a + 1 (a changing into a + 1 is the main effect). \\
+    a-- and --a have the similar effect.
+
+\section{for circulation}
+    We can write for circulation as below:
+    \begin{verbatim}
+    for ( i = number; i < count; i++)
+    {
+        content
+    }
+    \end{verbatim}
+    Remember, i < count can be replaced with other comparison operators, such as >, <=, etc. ``i++'' is the same.
+
+\section{goto content}
+    You can use goto content to switch your model to anywhere you put the word in. For instanse, you can use the content like this:
+    \begin{verbatim}
+        goto end;
+        ...
+        end:
+    \end{verbatim} 
+    Then, your model will come to the end position and continue its operation.
+
+\section{something about char}
+    Char variety can represent both some kind of integer, but also string. (\%c represents a char variety.)
+    \begin{verbatim}
+        char str;
+
+        scanf("%c", str);   //This is to define a char variety, which will soon be translated into an ASCII number.
+
+        operation(str)
+        printf("%c", str_new);    //This is to print the str_new string(c represents it), which will be translated from an ASCII number into a string.
+        printf("%d", str_new);    //This is to print the ASCII number(d represents it) of str_new string.
+    \end{verbatim}
+
+\section{bool}
+    In C++, the bool value True represents value 1, while False represents value 0. But we use \%d to output a bool value. In fact, bool value 
+is like an integer.
+
+\section{logic operators}
+    There are 3 logic operators, or(\verb!||!), and(\&\&), not(!), each of which will output a bool value(0 or 1).
+    Remember, the process is that not > and > or.
+
+\section{standarized interval symbols}
+    There are three: tab, enter and blank space.
+
+\section{input string}
+    When you use scanf to assign a string, the time you use tab or space, it will stop anyway.\par
+    But if you want the string to include a space, you can use get(string) sentence.
+\end{document}

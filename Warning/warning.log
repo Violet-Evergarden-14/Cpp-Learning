@@ -1,0 +1,87 @@
+This is XeTeX, Version 3.141592653-2.6-0.999997 (MiKTeX 25.12) (preloaded format=xelatex 2026.1.15)  15 JAN 2026 20:54
+entering extended mode
+ restricted \write18 enabled.
+ file:line:error style messages enabled.
+ %&-line parsing enabled.
+**d:/Learning/Cpp_Learning/Warning/warning.tex
+(d:/Learning/Cpp_Learning/Warning/warning.tex
+LaTeX2e <2025-11-01>
+L3 programming layer <2025-12-24>
+(D:\ProgramFiles_D\tex\tex/latex/base\article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(D:\ProgramFiles_D\tex\tex/latex/base\size10.clo
+File: size10.clo 2025/01/22 v1.4n Standard LaTeX file (size option)
+)
+\c@part=\count271
+\c@section=\count272
+\c@subsection=\count273
+\c@subsubsection=\count274
+\c@paragraph=\count275
+\c@subparagraph=\count276
+\c@figure=\count277
+\c@table=\count278
+\abovecaptionskip=\skip49
+\belowcaptionskip=\skip50
+\bibindent=\dimen148
+)
+(D:\ProgramFiles_D\tex\tex/latex/l3backend\l3backend-xetex.def
+File: l3backend-xetex.def 2025-10-09 L3 backend support: XeTeX
+\g__graphics_track_int=\count279
+\g__pdfannot_backend_int=\count280
+\g__pdfannot_backend_link_int=\count281
+) (warning.aux)
+\openout1 = `warning.aux'.
+
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 3.
+LaTeX Font Info:    ... okay on input line 3.
+
+Overfull \hbox (258.75pt too wide) in paragraph at lines 39--39
+[]        \TU/lmtt/m/n/10 scanf("%c", str);   //This is to define a char variet
+y, which will soon be translated into an ASCII number.[] 
+ []
+
+
+Overfull \hbox (442.5pt too wide) in paragraph at lines 39--39
+[]        \TU/lmtt/m/n/10 printf("%c", str_new);    //This is to print the str_
+new string(c represents it), which will be translated from an ASCII number into
+ a string.[] 
+ []
+
+
+Overfull \hbox (206.25pt too wide) in paragraph at lines 39--39
+[]        \TU/lmtt/m/n/10 printf("%d", str_new);    //This is to print the ASCI
+I number(d represents it) of str_new string.[] 
+ []
+
+[1
+
+] [2] (warning.aux)
+ ***********
+LaTeX2e <2025-11-01>
+L3 programming layer <2025-12-24>
+ ***********
+ ) 
+Here is how much of TeX's memory you used:
+ 451 strings out of 402987
+ 8595 string characters out of 5453285
+ 436385 words of memory out of 5000000
+ 29221 multiletter control sequences out of 15000+600000
+ 627753 words of font info for 44 fonts, out of 8000000 for 9000
+ 1348 hyphenation exceptions out of 8191
+ 35i,5n,38p,208b,164s stack positions out of 10000i,1000n,20000p,200000b,200000s
+
+Output written on warning.pdf (2 pages).
