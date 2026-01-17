@@ -6,7 +6,7 @@ void reverse(int list[], int lo, int hi)
 	if (lo < hi)
 	{
 		swap(list[lo], list[hi]);
-		reverse(list, lo + 1, hi + 1);
+		reverse(list, lo + 1, hi - 1);
 	}
 }
 
@@ -26,6 +26,6 @@ void reverse__another(int list[], int lo, int hi)
 {
 	while (lo < hi)
 	{
-		swap(list[lo++], list[hi++]);
+		swap(list[lo++], list[hi--]);
 	}
 }
