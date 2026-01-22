@@ -40,15 +40,26 @@ public:
 	~Vector();
 
 	// 重载
-	Vector<T> & operator= (Vector<T> const&);
+	Vector<T>& operator= (Vector<T> const&);
+	T& operator[] (Rank r);
 
 	// 只读访问接口
 	Rank size() const;    // 显示_size值
 };
 
-// 构造与析构
 template <typename T>
-Vector<T>::Vector(int c = DEFAULT_CAPACITY, int s = 0, T v = 0)
+void Vector<T>::expand()
+{
+	if (_size < _capacity) return;
+	if (_capacity < DEFAULT_CAPACITY) _capacity = DEFAULT_CAPACITY;
+	T* oldelem = _elem;
+	_elem = new T[_capacity <<= 1];
+	for (int i = 0; i < _size; i++) _elem[i] = oldelem[i];
+	delete[] oldelem;
+}
+
+template <typename T>
+Vector<T>::Vector(int c, int s, T v)
 {
 	_elem =  new T[_capacity = c];
 	for (_size = 0; _size < c; _size++) {
@@ -86,7 +97,6 @@ Vector<T>::~Vector()
 	delete[] _elem;
 }
 
-// public
 template <typename T>
 void Vector<T>::copy_from(T const* A, Rank lo, Rank hi)
 {
@@ -94,7 +104,6 @@ void Vector<T>::copy_from(T const* A, Rank lo, Rank hi)
 	while (lo < hi) _elem[_size++] = A[lo++];
 }
 
-// 重载
 template <typename T>
 Vector<T>& Vector<T>::operator= (Vector<T> const& V)
 {
@@ -103,7 +112,12 @@ Vector<T>& Vector<T>::operator= (Vector<T> const& V)
 	return *this;
 }
 
-// 只读访问接口
+template <typename T>
+T& Vector<T>::operator[] (Rank r)
+{
+	return _elem[r];
+}
+
 template <typename T>
 Rank Vector<T>::size() const
 {
