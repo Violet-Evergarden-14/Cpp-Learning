@@ -1,31 +1,28 @@
 {
     "tasks": [
+        // 多文件编译：单层 cmd 执行，无嵌套，循环变量正确解析
         {
-            "type": "cppbuild",
-            "label": "C/C++: gcc.exe 生成活动文件",
-            "command": "D:\\msys\\mingw64\\bin\\g++.exe",
-            "args": [
-                "-fdiagnostics-color=always",
-                "-g",
-                "${file}",
-                "-o",
-                "${fileDirname}\\${fileBasenameNoExtension}.exe"
-            ],
+            "label": "C/C++: g++.exe 多文件编译",
+            "type": "shell",
+            "command": "setlocal enabledelayedexpansion && set OBJS= && for %f in (*.cpp) do set OBJS=!OBJS! %f && D:\\msys\\mingw64\\bin\\g++.exe -fdiagnostics-color=always -g !OBJS! -o ${workspaceFolder}\\main.exe -I ${workspaceFolder}",
             "options": {
-                "cwd": "${fileDirname}"
+                "cwd": "${workspaceFolder}",
+                "shell": {
+                    "executable": "cmd.exe", // 强制用 cmd 执行
+                    "args": ["/c", "chcp 65001>nul &&"] // 先设置编码，再执行核心命令
+                }
             },
-            "problemMatcher": [
-                "$gcc"
-            ],
+            "problemMatcher": ["$gcc"],
             "group": {
                 "kind": "build",
                 "isDefault": true
             },
-            "detail": "调试器生成的任务。"
+            "detail": "多文件编译：单层cmd，自动匹配所有.cpp，解决%%f报错"
         },
+        // 单文件编译：保持不变
         {
             "type": "cppbuild",
-            "label": "C/C++: g++.exe 生成活动文件",
+            "label": "C/C++: g++.exe 单文件编译",
             "command": "D:\\msys\\mingw64\\bin\\g++.exe",
             "args": [
                 "-fdiagnostics-color=always",
@@ -37,11 +34,9 @@
             "options": {
                 "cwd": "${fileDirname}"
             },
-            "problemMatcher": [
-                "$gcc"
-            ],
+            "problemMatcher": ["$gcc"],
             "group": "build",
-            "detail": "调试器生成的任务。"
+            "detail": "单文件编译：编译当前打开的文件"
         }
     ],
     "version": "2.0.0"
