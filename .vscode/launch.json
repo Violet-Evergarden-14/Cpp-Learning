@@ -1,13 +1,14 @@
 {
     "configurations": [
+        // 多文件调试：通用版，匹配当前目录的main.exe
         {
-            "name": "C/C++: g++.exe 调试多文件程序",
+            "name": "C/C++: g++.exe 调试多文件程序（通用版）",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}\\main.exe",
+            "program": "${fileDirname}\\main.exe", // 调试当前目录的main.exe
             "args": [],
             "stopAtEntry": false,
-            "cwd": "${workspaceFolder}",
+            "cwd": "${fileDirname}", // 调试工作目录=当前文件目录
             "environment": [],
             "externalConsole": false,
             "MIMode": "gdb",
@@ -24,10 +25,11 @@
                     "ignoreFailures": true
                 }
             ],
-            "preLaunchTask": "C/C++: g++.exe 多文件编译"
+            "preLaunchTask": "C/C++: g++.exe 多文件编译（通用版）" // 匹配tasks的label
         },
+        // 单文件调试：通用版，无需修改
         {
-            "name": "C/C++: g++.exe 调试单文件程序",
+            "name": "C/C++: g++.exe 调试单文件程序（通用版）",
             "type": "cppdbg",
             "request": "launch",
             "program": "${fileDirname}\\${fileBasenameNoExtension}.exe",
@@ -50,7 +52,7 @@
                     "ignoreFailures": true
                 }
             ],
-            "preLaunchTask": "C/C++: g++.exe 单文件编译"
+            "preLaunchTask": "C/C++: g++.exe 单文件编译（通用版）"
         }
     ],
     "version": "2.0.0"

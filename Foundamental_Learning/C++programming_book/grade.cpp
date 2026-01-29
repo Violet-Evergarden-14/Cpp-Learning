@@ -47,6 +47,6 @@ void exam_information::show_grade()
 
 int main()
 {
-	exam_information course1("Mjath", 76);
+	exam_information course1("Math", 76);
 	course1.show_grade();
 }

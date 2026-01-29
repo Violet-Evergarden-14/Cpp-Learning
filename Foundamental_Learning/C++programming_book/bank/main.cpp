@@ -16,9 +16,7 @@ int main()
 	account1.settle(90);
 
 	account0.show();
-	cout << endl;
 	account1.show();
-	cout << endl;
 
 	cout << "Total: " << savings_account::get_total() << endl;
 }
