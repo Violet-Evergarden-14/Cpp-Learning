@@ -23,7 +23,7 @@ savings_account::savings_account(int _date, int _id, double _rate)
 
 const void savings_account::show()
 {
-	cout << "#" << id << "\tBalnace: " << balance << endl;
+	cout << "#" << id << "\tBalance: " << balance << endl;
 }
 
 void savings_account::deposit(int date, double amount)
