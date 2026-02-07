@@ -5,10 +5,12 @@ using namespace std;
 Point::Point() {
 	x = y = 0;
 	cout << "Default Constructor called." << endl;
+	count++;
 }
 
 Point::Point(int _x, int _y) : x(_x), y(_y) {
 	cout << "Constructor called." << endl;
+	count++;
 }
 
 Point::~Point() {
