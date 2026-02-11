@@ -1,0 +1,28 @@
+#include "matrix.h"
+#include <iostream>
+using namespace std;
+
+void Matrix::set_matrix(const double* values) {
+	for (int i = 0; i < size * size; i++) {
+		elements[i] = values[i];
+	}
+}
+
+Matrix::Matrix(int _size): size(_size) {
+	elements = new double[size * size];
+}
+
+Matrix::~Matrix() {
+	delete[] elements;
+}
+
+void Matrix::print_matrix() const {
+	cout << "The matrix is:" << endl;
+	for (int i = 0; i < size; i++) {
+		for (int j = 0; j < size; j++) {
+			cout << elements[i * size + j] << " ";
+		}
+		cout << endl;
+	}
+}
+

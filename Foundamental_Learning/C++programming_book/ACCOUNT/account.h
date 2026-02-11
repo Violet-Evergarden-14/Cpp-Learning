@@ -2,34 +2,57 @@
 #define __ACCOUNT_H__
 
 #include "date.h"
+#include "accumulator.h"
 #include <string>
 
-class savings_account
-{
+class Account {
 private:
 	std::string id;
 	double balance;
-	double rate;
-	Date last_date;
-	double accumulation;
 	static double total;
-	void record(const Date &date, double amount, const std::string &desc);   //desc is a description
-	void error(const std::string &msg) const;
-	double accumulate(const Date &date) const {
-		return accumulation + balance * date.distance(last_date);
-	}
+protected:
+	Account(const Date& _date, const std::string _id);
+	void record(const Date& date, double amount, const std::string& desc);
+	void error(const std::string& msg) const;
 public:
-	savings_account(const Date &_date, const std::string _id, double _rate);
-	const std::string &get_id() const {return id;}
+	const std::string& get_id() const {return id;}
 	double get_balance() const {return balance;}
-	double get_rate() const {return rate;}
 	static double get_total() {return total;}
-	void deposit(const Date &date, double amount, const std::string &desc);
-	void withdraw(const Date &date, double amount, const std::string &desc);
-	void settle(const Date &date);
 	void show() const;
 };
 
+class SavingsAccount: public Account {
+private:
+	Accumulator acc;
+	double rate;
+public:
+	SavingsAccount(const Date& _date, const std::string& _id, double _rate);
+	double get_rate() const {return rate;}
+	void deposit(const Date& date, double amount, const std::string& desc);
+	void withdraw(const Date& date, double amount, const std::string& desc);
+	void settle(const Date& date);
+};
 
+class CreditAccount: public Account {
+private:
+	Accumulator acc;
+	double credit;
+	double rate;
+	double fee;
+	double get_debt() const {
+		double balance = get_balance();
+		return balance < 0 ? balance : 0;
+	}
+public:
+	CreditAccount(const Date& _date, const std::string& _id, double _credit, double _rate, double _fee);
+	double get_credit() const {return credit;}
+	double get_rate() const {return rate;}
+	double get_fee() const {return fee;}
+	double get_available_credit() const {return (get_balance() < 0) ? (credit + get_balance()) : credit;}
+	void deposit(const Date& date, double amount, const std::string& desc);
+	void withdraw(const Date& date, double amount, const std::string& desc);
+	void settle(const Date& date);
+	void show() const;
+};
 
 #endif
