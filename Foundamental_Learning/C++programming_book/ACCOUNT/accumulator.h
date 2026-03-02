@@ -9,10 +9,9 @@ class Accumulator
 private:
 	Date last_date;
 	double value;
-	double value_for_credit_account;
 	double sum;
 public:
-	Accumulator(const Date& _date, double _value): last_date(_date), value(_value), value_for_credit_account(0), sum(0) {};
+	Accumulator(const Date& _date, double _value): last_date(_date), value(_value), sum(0) {};
 	double get_sum(const Date& date, const std::string& type) const {
 		if (type == "credit_account" && value >= 0) {return sum;}
 		else {return sum + value * date.distance(last_date);}

@@ -9,6 +9,9 @@ public:
 	Clock(int _hour = 0, int _minute = 0, int _second = 0);
 	Clock(const Clock& now);
 
+	Clock& operator++();
+	Clock operator++(int);
+
 	void show_clock();
 	void set_clock(int _hour, int _minute, int _second);
 };
@@ -18,6 +21,26 @@ Clock::Clock(int _hour, int _minute, int _second):hour(_hour), minute(_minute), 
 
 Clock::Clock(const Clock& now):hour(now.hour), minute(now.minute), second(now.second)
 {}
+
+Clock& Clock::operator++() {
+	second++;
+	if (second >= 60) {
+		second -= 60;
+		minute++;
+		if (minute >= 60) {
+			minute -= 60;
+			hour++;
+			hour %= 24;
+		}
+	}
+	return *this;
+}
+
+Clock Clock::operator++(int) {
+	Clock old = *this;
+	++(*this);
+	return old;
+}
 
 void Clock::show_clock()
 {

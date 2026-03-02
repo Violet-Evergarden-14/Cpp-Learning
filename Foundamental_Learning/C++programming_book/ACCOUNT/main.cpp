@@ -23,8 +23,12 @@ int main()
 
 	cout << endl;
 
-	sa1.show(); cout << endl;
-	sa2.show(); cout << endl;
-	ca.show(); cout << endl;
+	
+	Account* accounts[] = {&sa1, &sa2, &ca};
+	for (int i = 0; i < 3; i++) {
+		accounts[i]->show();
+		cout << endl;
+	}
+	
 	cout << "Total: " << Account::get_total() << endl;
 }
