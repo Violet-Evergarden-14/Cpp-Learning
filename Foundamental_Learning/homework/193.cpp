@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-class Vote
+class Candidate
 {
 public:
 	int id;
@@ -14,7 +14,7 @@ int main()
 	cin >> n >> m;
 
 	int a, count = 1, index = 0;
-	Vote candidates[m];
+	Candidate candidates[m];
 
 	cin >> a;
 	candidates[0].id = a;

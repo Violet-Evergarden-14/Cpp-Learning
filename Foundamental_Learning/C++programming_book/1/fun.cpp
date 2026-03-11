@@ -1,2 +1,2 @@
 extern int n;
-void fun();
+void fun() {}
