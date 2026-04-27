@@ -1,7 +1,6 @@
 #include <iostream>
 #include <vector>
-#include <cmath>
-#include <algorithm>
+#include <string>
 using namespace std;
 
 class HighPrecisionNumber {public:
@@ -83,31 +82,6 @@ class HighPrecisionNumber {public:
 		return res;
 	}
 
-	HighPrecisionNumber operator/(int m) {
-        HighPrecisionNumber res(0);
-        long long remainder = 0;
-        for (int i = length - 1; i >= 0; i--) {
-            remainder = remainder * 10 + num[i];
-            res.num[i] = remainder / m;
-            remainder = remainder % m;
-        }
-        for (int i = 4999; i >= 0; i--) {
-            if (res.num[i] != 0) {
-                res.length = i + 1;
-                break;
-            }
-        }
-        return res;
-    }
-
-	bool operator<(const HighPrecisionNumber& a) const {
-        if (length != a.length) return length < a.length;
-        for (int i = length - 1; i >= 0; --i) {
-            if (num[i] != a.num[i]) return num[i] < a.num[i];
-        }
-        return false;
-    }
-
 	void show() {
 		if (length == 0) {cout << 0; return;}
 		for (int i = 0; i < length; i++) {
@@ -116,39 +90,21 @@ class HighPrecisionNumber {public:
 	}
 };
 
-long long max(long long a, long long b) {
-	if (a >= b) return a;
-	return b;
-}
-
-class Official {
-public:
-	long long left, right;
-
-	friend bool operator>(const Official& a, const Official& b) {
-		if (max(b.right, a.left * a.right) < max(a.right, b.left * b.right)) return true;
-		return false;
-	}
-};
-
 int main()
 {
-	long long n;
-	cin >> n;
-	vector<Official> list(n + 1);
-	cin >> list[0].left >> list[0].right;
-	for (long long i = 1; i <= n; i++) {
-		cin >> list[i].left >> list[i].right;
+	std::ios::sync_with_stdio(false);
+    std::cin.tie(nullptr); 
+
+	int t, n, a;
+	cin >> t;
+	for (int k = 0; k < t; k++) {
+		cin >> n >> a;
+		int count = 0;
+		HighPrecisionNumber res(1);
+		for (int i = 1; i <= n; i++) res = res * i;
+		for (int j = 0; j < res.length; j++) {
+			if (res.num[j] == a) count++;
+		}
+		cout << count << endl;
 	}
-	
-	sort(list.begin() + 1, list.end(), greater<Official>());
-	
-	HighPrecisionNumber M(0);
-	HighPrecisionNumber mul(1);
-	for (long long i = 1; i <= n; i++) {
-		mul = mul * list[i - 1].left;
-		HighPrecisionNumber m = mul / list[i].right;
-		if (!(m < M)) M = m;
-	}
-	M.show();
 }

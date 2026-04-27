@@ -1,39 +1,25 @@
 #include <iostream>
-#include <map>
 #include <vector>
-#include <algorithm>
-#include <cctype>
+#include <stack>
 using namespace std;
-
-map<string, int> cnt;
-vector<string> words;
-
-string repr(const string& s) {
-	string ans = s;
-	for (int i = 0; i < ans.length(); i++) {
-		ans[i] = tolower(ans[i]);
-	}
-	sort(ans.begin(), ans.end());
-	return ans;
-}
 
 int main()
 {
-	int n = 0;
-	string s;
-	while (cin >> s) {
-		if (s[0] == '#') break;
-		words.push_back(s);
-		string r = repr(s);
-		if (!cnt.count(r)) cnt[r] = 0;
-		cnt[r]++;
+	vector<int> a = {1, 2, 3, 2, 1, 2, 3, 4};
+	int l = a.size();
+	vector<int> res(l, 0);
+	stack<int> st;
+	for (int i = 0; i < l; i++) {
+		while (!st.empty()) {
+			int t = st.top();
+			if (a[t] < a[i]) {
+				st.pop();
+				res[t] = i - t;
+			} else break;
+		}
+		st.push(i);
 	}
-	vector<string> ans;
-	for (int i = 0; i < words.size(); i++) {
-		if (cnt[repr(words[i])] == 1) ans.push_back(words[i]);
-	}
-	sort(ans.begin(), ans.end());
-	for (int i = 0; i < ans.size(); i++) {
-		cout << ans[i] << " ";
+	for (int i = 0; i < l; i++) {
+		cout << res[i] << " ";
 	}
 }
