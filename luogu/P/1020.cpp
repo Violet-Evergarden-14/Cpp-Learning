@@ -12,7 +12,6 @@ int main()
 	vector<int> height;
 	int a;
 	while (cin >> a) {
-		if (a == 1) break;
 		height.push_back(a);
 	}
 	vector<int> t1;
@@ -29,9 +28,9 @@ int main()
 	for (int i = 0; i < height.size(); i++) {
 		if (i == 0) {t2.push_back(height[0]); continue;}
 		int z = height[i];
-		if (t2.back() <= z) t2.push_back(z);
+		if (t2.back() < z) t2.push_back(z);
 		else {
-			int pos = upper_bound(t2.begin(), t2.end(), z) - t2.begin();
+			int pos = lower_bound(t2.begin(), t2.end(), z) - t2.begin();
 			t2[pos] = z;
 		}
 	}
