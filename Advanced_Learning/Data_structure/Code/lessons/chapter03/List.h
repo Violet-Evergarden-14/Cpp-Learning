@@ -36,8 +36,8 @@ public:
 // writable interface
 	ListNodePosi(T) insert_as_first(T const& e);
 	ListNodePosi(T) insert_as_last(T const& e);
-	ListNodePosi(T) insert_before(ListNodePosi(T), T const& e);
-	ListNodePosi(T) insert_after(ListNodePosi(T), T const& e);
+	ListNodePosi(T) insert_before(ListNodePosi(T) p, T const& e);
+	ListNodePosi(T) insert_after(ListNodePosi(T) p, T const& e);
 	T remove(ListNodePosi(T) p);
 	void merge(List<T>& L) {merge(this->first(), this->_size, L, L.first(), L._size);}
 	void sort(ListNodePosi(T) p, int n);
