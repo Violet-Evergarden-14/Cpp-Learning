@@ -1,48 +1,43 @@
 #include <iostream>
 #include <vector>
-#include <iomanip>
 #include <cmath>
+#include <queue>
 #include <algorithm>
+#include <iomanip>
 using namespace std;
 
+double dis[16][16] = {0.0};
+double x[16] = {0};
+double y[16] = {0};
+int vis[16] = {0};
 int n;
-vector<double> xl;
-vector<double> yl;
-vector<int> vis;
-vector<vector<double>> d;
+const double INF = 1000000000.0;
 
-double dfs(int idx, int count) {
-	if (count == 0) return 0;
-	vector<double> res;
-	for (int i = 0; i < n; i++) {
-		if (vis[i] == 0) {
-			vis[i] = 1;
-			res.push_back(d[idx][i] + dfs(i, count - 1));
-			vis[i] = 0;
-		}
-	}
-	double r = 2000000000;
-	for (int i = 0; i < count; i++) r = min(r, res[i]);
-	return r;
-}
+inline double dist(double a, double b) {return sqrt(1.0 * a * a + b * b);}
 
-int main()
-{
+int main() {
 	cin >> n;
-	vis = vector<int>(n, 0);
-	for (int i = 0; i < n; i++) {
-		double x, y;
-		cin >> x >> y;
-		xl.push_back(x);
-		yl.push_back(y);
-	}
-	xl.push_back(0);
-	yl.push_back(0);
-	d = vector<vector<double>>(n + 1, vector<double>(n + 1));
+	for (int i = 1; i <= n; i++) cin >> x[i] >> y[i];
 	for (int i = 0; i <= n; i++) {
 		for (int j = 0; j <= n; j++) {
-			d[i][j] = sqrt(pow(xl[i] - xl[j], 2) + pow(yl[i] - yl[j], 2));
+			dis[i][j] = dist(x[i] - x[j], y[i] - y[j]);
+			dis[j][i] = dist(x[i] - x[j], y[i] - y[j]);
 		}
 	}
-	cout << fixed << setprecision(2) << dfs(n, n);
+	int full = 1 << (n + 1);     // pos i: 1 << i
+	vector<vector<double>> dp(full, vector<double>(n + 1, INF));
+	dp[1][0] = 0;
+	for (int mask = 1; mask < full; mask++) {
+		for (int i = 0; i < n + 1; i++) {
+			if (!(mask & (1 << i))) continue;
+			if (dp[mask][i] == INF) continue;
+			for (int j = 1; j < n + 1; j++) {
+				if (mask & (1 << j)) continue;
+				dp[mask | (1 << j)][j] = min(dp[mask | (1 << j)][j], dp[mask][i] + dis[i][j]);
+			}
+		}
+	}
+	double res = INF;
+	for (int i = 1; i <= n; i++) res = min(res, dp[full - 1][i]);
+	cout << fixed << setprecision(2) << res;
 }

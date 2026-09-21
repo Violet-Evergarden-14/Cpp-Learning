@@ -2,33 +2,16 @@
 #include <vector>
 using namespace std;
 
-vector<vector<vector<int>>> cube = vector<vector<vector<int>>>(6, vector<vector<int>>(8, vector<int>(10, 0)));
-vector<vector<vector<int>>> vis = vector<vector<vector<int>>>(6, vector<vector<int>>(8, vector<int>(10, 0)));
+int n = 3;
 
-vector<int> dx = {1, 2, 3, 0, 0, 0, 0, 0, 0};
-vector<int> dy = {0, 0, 0, 1, 2, 3, 0, 0, 0};
-vector<int> dz = {0, 0, 0, 0, 0, 0, 1, 2, 3};
-
-void find(int x, int y, int z) {
-	vis[x][y][z] = 1;
-	for (int i = 0; i < 9; i++) {
-		int x1 = x - dx[i];
-		int y1 = y - dy[i];
-		int z1 = z - dz[i];
-		if (x1 >= 0 && y1 >= 0 && z1 >= 0) {
-			if (vis[x1][y1][z1] == 0) find(x1, y1, z1);
-			if (cube[x1][y1][z1] == 0) {
-				cube[x][y][z] = 1;
-				return;
-			}
-		}
-	}
+int byteSwap(int x, int n, int m) {
+	n <<= 3;
+	m <<= 3;
+	int y = ((x & (255 << n)) >> n) << m;
+	int z = ((x & (255 << m)) >> m) << n;
+	x &= ~(255 << n);
+	x &= ~(255 << m);
+    return x + y + z;
 }
 
-int main()
-{
-	vis[0][0][0] = 1;
-	find(5, 7, 9);
-	cout << cube[5][7][9];
-}
-
+int main() {cout << byteSwap(0xDEADBEEF, 0, 2);}
